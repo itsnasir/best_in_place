@@ -105,7 +105,7 @@ module BestInPlace
           field_value = object.send(field)
 
           if field_value.blank?
-            ''
+            '-'
           else
             BestInPlace::ViewHelpers.send(opts[:display_with], field_value)
           end
