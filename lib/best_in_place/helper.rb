@@ -14,6 +14,7 @@ module BestInPlace
       real_object = best_in_place_real_object_for object
 
       display_value = best_in_place_build_value_for(real_object, field, opts)
+      display_value = opts[:place_holder].to_s if display_value.blank? # if FIELD value is nil, then it should try to display place_holder
 
       value = real_object.send(field)
 
@@ -105,7 +106,7 @@ module BestInPlace
           field_value = object.send(field)
 
           if field_value.blank?
-            '-'
+            opts[:place_holder]
           else
             BestInPlace::ViewHelpers.send(opts[:display_with], field_value)
           end
